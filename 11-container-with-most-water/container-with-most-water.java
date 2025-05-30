@@ -4,9 +4,8 @@ class Solution {
         int l=0;
         int r=height.length-1;
         while(l<r){
-           int length=Math.min(height[l],height[r]);
-            int breadth=Math.abs(r-l);
-            max=Math.max(length*breadth,max);
+         
+            max=Math.max(Math.abs(r-l)*Math.min(height[l],height[r]),max);
             if (height[l]<height[r]){
                 l++;
             }

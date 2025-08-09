@@ -9,10 +9,10 @@ class Solution {
             a.pop();
         }
     }
-    String a2="";
+    StringBuilder a2=new StringBuilder();
   for (char a3:a){
-    a2=a2+a3;
+    a2.append(a3);
   }
-    return a2;
+    return a2.toString();
     }
 }

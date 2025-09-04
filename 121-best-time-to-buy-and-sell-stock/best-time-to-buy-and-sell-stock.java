@@ -8,7 +8,7 @@ class Solution {
      for (int i=prices.length-2;i>=0;i--){
         arr[i]=Math.max(prices[i],arr[i+1]);
      }
-     System.out.println(Arrays.toString(arr));
+   
      int max1=0;
      for (int i=0;i<prices.length;i++){
         if (arr[i]-prices[i]>max1){

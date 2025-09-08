@@ -1,16 +1,19 @@
 class Solution {
     public int[] getNoZeroIntegers(int n) {
-        int arr[]={0,0};
-        for (int i=1;i<n;i++){
-            int res=n-i;
-            String a1=Integer.toString(res);
-            String a2=Integer.toString(i);
-            if (!a1.contains("0") && !a2.contains("0")){
-                arr[0]=i;
-                arr[1]=res;
-                break;
+        for (int a = 1; a < n; a++) {
+            int b = n - a;
+            if (isValid(a) && isValid(b)) {
+                return new int[]{a, b};
             }
         }
-        return arr;
+        return new int[0];
+    }
+
+    private boolean isValid(int num) {
+        while (num > 0) {
+            if (num % 10 == 0) return false;
+            num /= 10;
+        }
+        return true;
     }
 }

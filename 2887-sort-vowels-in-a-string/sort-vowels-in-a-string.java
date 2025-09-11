@@ -1,6 +1,6 @@
 class Solution {
     public String sortVowels(String s) {
-        HashMap<Integer,Character> map=new HashMap<>();
+     
   List<Character> set = Arrays.asList('a','e','i','o','u','A','E','I','O','U');
 
 

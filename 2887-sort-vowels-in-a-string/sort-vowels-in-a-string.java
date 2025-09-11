@@ -1,18 +1,21 @@
 class Solution {
+    public boolean isvowel(char a){
+        return "aeiouAEIOU".indexOf(a)>=0;
+    }
     public String sortVowels(String s) {
      
-  List<Character> set = Arrays.asList('a','e','i','o','u','A','E','I','O','U');
+ 
 
 
         ArrayList<Character> list=new ArrayList<>();
         for (int i=0;i<s.length();i++){
-            if (set.contains(s.charAt(i)))list.add(s.charAt(i));
+            if (isvowel(s.charAt(i)))list.add(s.charAt(i));
         }
         Collections.sort(list);
         int c=0;
         StringBuilder str=new StringBuilder();
         for (int i=0;i<s.length();i++){
-            if(set.contains(s.charAt(i))){
+            if(isvowel(s.charAt(i))){
                 str.append(list.get(c++));
             }
             else{

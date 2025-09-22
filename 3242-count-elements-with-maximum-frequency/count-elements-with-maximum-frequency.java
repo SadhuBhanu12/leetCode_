@@ -1,18 +1,35 @@
+import java.util.*;
+
 class Solution {
     public int maxFrequencyElements(int[] nums) {
-        HashMap<Integer,Integer> map=new HashMap<>();
-        for (int i=0;i<nums.length;i++){
-            map.put(nums[i],map.getOrDefault(nums[i],0)+1);
+        HashSet<Integer> set = new HashSet<>();
+        ArrayList<Integer> list1 = new ArrayList<>();
+
+        // collect unique elements
+        for (int i = 0; i < nums.length; i++) {
+            set.add(nums[i]);
         }
-        int max=0;
-        for (int i:map.values()){
-            max=Math.max(i,max);
+
+        for (int i : set) {
+            list1.add(i);
         }
-        System.out.println(max);
-        int sum=0;
-        for (int i:map.keySet()){
-            if (map.get(i)==max)sum+=map.get(i);
+
+        int arr[] = new int[list1.size()];
+
+        for (int i = 0; i < nums.length; i++) {
+            arr[list1.indexOf(nums[i])] += 1;
         }
+
+        int max = 0;
+        for (int i = 0; i < arr.length; i++) {
+            max = Math.max(arr[i], max);
+        }
+
+        int sum = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == max) sum += arr[i];
+        }
+
         return sum;
     }
 }

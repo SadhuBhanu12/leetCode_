@@ -6,11 +6,11 @@ class Solution {
         return count;
     }
   
-    public int hammingWeight(int n) {
+    public void hammingWeight(int n) {
         if (n!=0){
             count++;
         hammingWeight(n&(n-1));
         }
-        return count;
+        
     }
 }

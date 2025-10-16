@@ -14,17 +14,20 @@
  * }
  */
 class Solution {
-     ArrayList<Integer> list=new ArrayList<>();
-    public void preordertrave(TreeNode root){
-        if (root!=null){
-           
-            preordertrave(root.left);
-            preordertrave(root.right);
-             list.add(root.val);
-        }
-    }
     public List<Integer> postorderTraversal(TreeNode root) {
-         preordertrave(root);
+        List<Integer> list=new ArrayList<>();
+        if(root==null)return new ArrayList<>();
+        Stack<TreeNode> stack=new Stack<>();
+        stack.push(root);
+        while(!stack.isEmpty()){
+            TreeNode poll1=stack.pop();
+           list.add(poll1.val);
+            if (poll1.left!=null)stack.push(poll1.left);
+             if (poll1.right!=null){
+                stack.push(poll1.right);
+            }
+        }
+        Collections.reverse(list);
         return list;
     }
 }

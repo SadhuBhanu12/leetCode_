@@ -14,20 +14,16 @@
  * }
  */
 class Solution {
-    public TreeNode searchBST(TreeNode root, int val) {
-        Queue<TreeNode> queue=new LinkedList<>();
-        queue.offer(root);
-        while(!queue.isEmpty()){
-            TreeNode poll1=queue.poll();
-            if (poll1.val==val)return poll1;
-            if (poll1.left!=null){
-                queue.offer(poll1.left);
-            }
-            if (poll1.right!=null){
-                queue.offer(poll1.right);
-            }
-
+    TreeNode root1=null;
+    public void inorder(TreeNode root,int val){
+        if (root!=null){
+            inorder(root.left,val);
+            if (root.val==val)root1=root;
+            inorder(root.right,val);
         }
-        return null;
+    }
+    public TreeNode searchBST(TreeNode root, int val) {
+    inorder(root,val);
+    return root1;
     }
 }

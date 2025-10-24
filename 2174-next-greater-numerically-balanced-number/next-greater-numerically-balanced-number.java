@@ -1,19 +1,23 @@
 class Solution {
     public int nextBeautifulNumber(int n) {
-        for (int i=n+1;i<=1224444 ;i++){
-            if (check(Integer.toString(i))){
+        for (int i = n + 1; i <= 1224444; i++) {
+            if (check(i)) {
                 return i;
             }
         }
         return -1;
     }
-    public boolean check(String a){
-        HashMap<Character,Integer> map=new HashMap<>();
-        for ( char ch:a.toCharArray()){
-                map.put(ch,map.getOrDefault(ch,0)+1);
+
+    private boolean check(int x) {
+        int[] arr = new int[10];
+        while (x > 0) {
+            arr[x % 10]++;
+            x /= 10;
         }
-        for(char ch:map.keySet()){
-            if (Integer.parseInt(ch+"")!=map.get(ch))return false;
+        for (int i= 0; i < 10; ++i) {
+            if (arr[i] > 0 && arr[i] != i) {
+                return false;
+            }
         }
         return true;
     }

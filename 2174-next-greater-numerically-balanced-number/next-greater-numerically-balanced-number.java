@@ -1,6 +1,6 @@
 class Solution {
     public int nextBeautifulNumber(int n) {
-        for (int i = n + 1; i <=1224445 ; i++) {
+        for (int i = n + 1; i <=999999999 ; i++) {
             if (check(i)) {
                 return i;
             }

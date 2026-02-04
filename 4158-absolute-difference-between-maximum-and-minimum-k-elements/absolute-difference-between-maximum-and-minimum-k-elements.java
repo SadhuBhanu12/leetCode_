@@ -6,7 +6,7 @@ class Solution {
         int l=0;
         int r=nums.length-1;
         int c=0;
-        while(l!=nums.length && r!=-1){
+        while(k>0){
             if(c==k){
                 break;
             }
@@ -14,7 +14,7 @@ class Solution {
             sum2+=nums[r];
             l++;
             r--;
-            c++;
+            k--;
         }
         return Math.abs(sum1-sum2);
     }

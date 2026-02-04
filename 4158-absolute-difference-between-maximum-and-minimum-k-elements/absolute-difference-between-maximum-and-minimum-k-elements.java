@@ -3,8 +3,19 @@ class Solution {
         Arrays.sort(nums);
         int sum1=0;
         int sum2=0;
-        for (int i=0;i<k;i++)sum1+=nums[i];
-        for (int i=nums.length-1;i>=nums.length-k;i--)sum2+=nums[i];
+        int l=0;
+        int r=nums.length-1;
+        int c=0;
+        while(l!=nums.length && r!=-1){
+            if(c==k){
+                break;
+            }
+            sum1+=nums[l];
+            sum2+=nums[r];
+            l++;
+            r--;
+            c++;
+        }
         return Math.abs(sum1-sum2);
     }
 }

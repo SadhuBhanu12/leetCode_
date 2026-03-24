@@ -14,8 +14,7 @@ class Solution {
            c2=c2*nums[i];
            right[i]=c2;
         }
-        System.out.println(Arrays.toString(left));
-        System.out.println(Arrays.toString(right));
+        
         for (int i=1;i<left.length;i++){
             nums[i-1]=left[i-1]*right[i];
         }

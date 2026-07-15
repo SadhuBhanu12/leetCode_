@@ -16,23 +16,6 @@ class Solution {
        
     }
     public int gcd(int n1,int n2){
-        int i=2;
-        int count=1;
-       while(n1!=1 ||n2!=1){
-        if(n1%i==0 && n2%i==0){
-            count*=i;
-            n1=n1/i;
-            n2=n2/i;
-        }else if(n1%i==0 && n2%i!=0){
-            n1=n1/i;
-        }
-        else if(n2%i==0 && n1%i!=0){
-            n2=n2/i;
-        }
-            else{
-            i++;
-        }
-       }
-       return count;
+        return n2==0 ? n1:gcd(n2,n1%n2);
     }
 }

@@ -1,32 +1,20 @@
 class Solution {
     public int evalRPN(String[] tokens) {
-        Stack<Integer> operand=new Stack<>();
-        Queue<String> operators=new LinkedList<>();
-        for (int i=0;i<tokens.length;i++){
-            if (tokens[i].equals("+")|| tokens[i].equals("-")||tokens[i].equals("*")||tokens[i].equals("/")){
-             
-            int poll1=operand.pop();
-            int poll2=operand.pop();
-            String oper=tokens[i];
-            if (oper.equals("+")){
-                operand.push(poll2+poll1);
-            }
-            if (oper.equals("-")){
-                operand.push(poll2-poll1);
-            }
-            if (oper.equals("/")){
-                operand.push(poll2/poll1);
-            }
-            if (oper.equals("*")){
-                operand.push(poll2*poll1);
-            
-        }
-            }
+        Stack<Integer> stack=new Stack<>();
+    
+        for(String str:tokens){
+            if(stack.size()>=2 && str.equals("+")||str.equals("-")||str.equals("*")||str.equals("/")) {
+                int val2=stack.pop();
+                   int val1=stack.pop();
+                   if(str.equals("+"))stack.push(val1+val2);
+                   else if(str.equals("-"))stack.push(val1-val2);
+                   else if(str.equals("/"))stack.push(val1/val2);
+                   else if(str.equals("*"))stack.push(val1*val2);
+            }  
             else{
-                operand.push(Integer.parseInt(tokens[i]));
+                stack.push(Integer.parseInt(str));
             }
         }
-        
-       return operand.pop();
+        return stack.pop();
     }
 }

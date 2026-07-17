@@ -1,6 +1,7 @@
 class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
-        HashSet<List<Integer>> set = new HashSet<>();
+        List<List<Integer>> ans = new ArrayList<>();
+
         Arrays.sort(nums);
 
         for (int i = 0; i < nums.length - 2; i++) {
@@ -8,32 +9,29 @@ class Solution {
             if (i > 0 && nums[i] == nums[i - 1])
                 continue;
 
-            int target = -nums[i];
+            int l = i + 1;
+            int r = nums.length - 1;
 
-            List<int[]> pairs = two(nums, target, i);
+            while (l < r) {
+                int sum = nums[i] + nums[l] + nums[r];
 
-            for (int[] arr : pairs) {
-                set.add(Arrays.asList(nums[i], nums[arr[0]], nums[arr[1]]));
+                if (sum == 0) {
+                    ans.add(Arrays.asList(nums[i], nums[l], nums[r]));
+
+                    l++;
+                    r--;
+
+                    while (l < r && nums[l] == nums[l - 1]) l++;
+                    while (l < r && nums[r] == nums[r + 1]) r--;
+
+                } else if (sum < 0) {
+                    l++;
+                } else {
+                    r--;
+                }
             }
         }
 
-        return new ArrayList<>(set);
-    }
-
-    public List<int[]> two(int nums[], int target, int start) {
-
-        List<int[]> res = new ArrayList<>();
-        HashMap<Integer, Integer> map = new HashMap<>();
-
-        for (int i = start + 1; i < nums.length; i++) {
-
-            if (map.containsKey(target - nums[i])) {
-                res.add(new int[] { map.get(target - nums[i]), i });
-            }
-
-            map.put(nums[i], i);
-        }
-
-        return res;
+        return ans;
     }
 }

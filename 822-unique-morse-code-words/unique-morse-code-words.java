@@ -1,5 +1,9 @@
 class Solution {
     public int uniqueMorseRepresentations(String[] words) {
+        int n=words.length;
+        if(n==1){
+            return 1;
+        }
         String arr[]={".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."};
         HashSet<String> set=new HashSet<>();
         for(int i=0;i<words.length;i++){

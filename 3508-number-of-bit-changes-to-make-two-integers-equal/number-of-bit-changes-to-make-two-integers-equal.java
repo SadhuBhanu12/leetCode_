@@ -23,13 +23,10 @@ class Solution {
             a1=sb.toString();
         }
        
-        char arr1[]=a1.toCharArray();
-        char arr2[]=a2.toCharArray();
-        for(int i=0;i<arr1.length;i++){
-            if(arr1[i]==arr2[i])continue;
+        for(int i=0;i<a1.length();i++){
+            if(a1.charAt(i)==a2.charAt(i))continue;
             else{
-            if(arr1[i]=='1'){
-                arr1[i]=0;
+            if(a1.charAt(i)=='1'){
                 count++;
                
             }

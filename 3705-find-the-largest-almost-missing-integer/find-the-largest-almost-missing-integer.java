@@ -1,28 +1,21 @@
 class Solution {
     public int largestInteger(int[] nums, int k) {
-        
-        ArrayList<int[]> list=new ArrayList<>();
-        for(int i=0;i<=nums.length-k;i++){
-            int arr[]=Arrays.copyOfRange(nums,i,i+k);
-            list.add(arr);
+        HashMap<Integer,Integer> map = new HashMap<>();
+        int max = Integer.MIN_VALUE;
+        for(int i = 0; i<k; i++) {
+            map.put(nums[i],1);
         }
-        HashMap<Integer,Integer> map=new HashMap<>();
-        for(int i=0;i<list.size();i++){
-            for(int j=0;j<k;j++){
-                    map.put(list.get(i)[j],map.getOrDefault(list.get(i)[j],0)+1);
+        for(int i = 1; i <= nums.length-k; i++) {
+            for(int j = i; j < i+k; j++) {
+                map.put(nums[j],map.getOrDefault(nums[j],0)+1);
             }
         }
-        int num=-1;
-        for(int i:map.keySet()){
-            if(k==nums.length){
-                num=Math.max(i,num);
-            }
-            else{
-            if(map.get(i)==1){
-                num=Math.max(num,i);
-            }
+        for(int i : map.keySet()) {
+            if(map.get(i) == 1) {
+                System.out.println(i);
+                max = Math.max(max,i);
             }
         }
-        return num;
+        return max == Integer.MIN_VALUE ?  -1 : max;
     }
 }

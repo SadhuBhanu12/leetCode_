@@ -1,19 +1,30 @@
 class Solution {
     public int reverse(int x) {
-        long finalNum = 0;
-        while(x!=0){
-            int lastDig = x%10;
-            finalNum += lastDig;
-            finalNum = finalNum*10;
-            x= x/10;
+        if (x == 0) return 0;
+
+        int val = x;
+        long num = Math.abs((long) x);
+
+        Queue<Integer> queue = new LinkedList<>();
+
+        while (num > 0) {
+            int temp = (int)(num % 10);
+            num = num / 10;
+            queue.offer(temp);
         }
-        finalNum = finalNum/10;
-        if(finalNum > Integer.MAX_VALUE || finalNum<Integer.MIN_VALUE){
+
+        long val1 = queue.poll();
+
+        while (!queue.isEmpty()) {
+            int poll = queue.poll();
+            val1 = (val1 * 10) + poll;
+        }
+
+        val1 = (val > 0) ? val1 : -val1;
+
+        if (val1 < -(1L << 31) || val1 > (1L << 31) - 1)
             return 0;
-        }
-        if(x<0){
-            return (int)(-1*finalNum);
-        }
-        return (int)finalNum;
+
+        return (int) val1;
     }
 }

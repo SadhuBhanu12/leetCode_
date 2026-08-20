@@ -12,12 +12,10 @@ class Solution {
             if( list1.get(list1.size()-1)>list2.get(list2.size()-1)){
                 list1.add(nums[i]);
             }
-             else if(list2.get(list2.size()-1)>list1.get(list1.size()-1)){
+             else {
                 list2.add(nums[i]);
             }
         }
-        System.out.println(list1+"   "+list2);
-
         for(int i=0;i<list1.size();i++){
             nums[i]=list1.get(i);
         }

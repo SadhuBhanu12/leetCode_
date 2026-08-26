@@ -18,7 +18,7 @@ class Solution {
                     res=a;
                 }
                 list.add(a);
-                a=a.substring(1);
+                a=a.substring(1,a.length());
                 count--;
                 
             }

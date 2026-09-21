@@ -1,29 +1,26 @@
 class Solution {
     public String shortestBeautifulSubstring(String s, int k) {
-        String a="";
+        String res="";
         int count=0;
         int len=Integer.MAX_VALUE;
-        String res="";
-        
+        int l=0;
         for(int i=0;i<s.length();i++){
-            a=a+s.charAt(i);
             if(s.charAt(i)=='1')count++;
-            if(count==k){
-                while(a.length()>k && a.charAt(0)=='0'){
-                    a=a.substring(1);
+            while(count==k){
+                String sub=s.substring(l,i+1);
+                if(sub.length()<len ){
+                    res=sub;
+                    len=sub.length();
                 }
-                
-                if(len>a.length() || (a.length() == len && a.compareTo(res) < 0)){
-                    len=a.length();
-                    res=a;
+                else if(sub.length()==len && res.compareTo(sub)>0){
+                    res=sub;
                 }
-              
-                a=a.substring(1,a.length());
-                count--;
-                
+                if(s.charAt(l)=='1'){
+                    count--;
+                }
+                l++;
             }
         }
-        
         return res;
     }
 }

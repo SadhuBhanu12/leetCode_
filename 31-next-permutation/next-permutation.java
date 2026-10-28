@@ -1,27 +1,25 @@
 class Solution {
     public void nextPermutation(int[] nums) {
-        int piv=-1;
+        int pivot=-1;
         for(int i=nums.length-1;i>0;i--){
             if(nums[i]>nums[i-1]){
-                piv=i-1;
+                pivot=i-1;
                 break;
             }
         }
-        if(piv==-1){
-            rev(nums,0,nums.length-1);
+        if(pivot==-1){
+            rotate(nums,0,nums.length-1);
             return;
         }
-        for(int j=nums.length-1;j>=piv+1;j--){
-            if(nums[j]>nums[piv]){
-                int temp=nums[j];
-                nums[j]=nums[piv];
-                nums[piv]=temp;
+        for(int i=nums.length-1;i>=pivot;i--){
+            if(nums[i]>nums[pivot]){
+                swap(nums,i,pivot);
                 break;
             }
         }
-        rev(nums,piv+1,nums.length-1);
+        rotate(nums,pivot+1,nums.length-1);
     }
-    public void rev(int nums[],int l,int r){
+    public void rotate(int nums[],int l, int r){
         while(l<=r){
             int temp=nums[l];
             nums[l]=nums[r];
@@ -30,4 +28,9 @@ class Solution {
             r--;
         }
     }
+    public void swap(int arr[],int l,int r){
+        int temp=arr[l];
+        arr[l]=arr[r];
+        arr[r]=temp;
+    } 
 }

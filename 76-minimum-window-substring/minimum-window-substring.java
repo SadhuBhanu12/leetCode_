@@ -1,48 +1,33 @@
 class Solution {
     public String minWindow(String s, String t) {
-
-        if(s.length() < t.length()) return "";
-
-        HashMap<Character,Integer> map = new HashMap<>();
-
-        for(char i : t.toCharArray())
-            map.put(i, map.getOrDefault(i, 0) + 1);
-
-        int l = 0;
-        int len = Integer.MAX_VALUE;
-        String res = "";
-
-        HashMap<Character,Integer> map1 = new HashMap<>();
-
-        int count = 0;
-
-        for(int r = 0; r < s.length(); r++) {
-
-            char ch = s.charAt(r);
-
-            map1.put(ch, map1.getOrDefault(ch, 0) + 1);
-
-            if(map.containsKey(ch) && map1.get(ch) <= map.get(ch))
-                count++;
-
-            while(count == t.length()) {
-
-                if(r - l + 1 < len) {
-                    len = r - l + 1;
-                    res = s.substring(l, r + 1);
-                }
-
-                char left = s.charAt(l);
-
-                map1.put(left, map1.get(left) - 1);
-
-                if(map.containsKey(left) && map1.get(left) < map.get(left))
-                    count--;
-
-                l++;
-            }
+        HashMap<Character,Integer> map1=new HashMap<>();
+        for(int i=0;i<t.length();i++){
+            map1.put(t.charAt(i),map1.getOrDefault(t.charAt(i),0)+1);
         }
+        HashMap<Character,Integer> map2=new HashMap<>();
+        int l=0;
+        int len=0;
+        String str="";
+        int str_len=s.length();
+        for(int i=0;i<s.length();i++){  
+            map2.put(s.charAt(i),map2.getOrDefault(s.charAt(i),0)+1);
+            if(map1.containsKey(s.charAt(i))&& map2.get(s.charAt(i))<=map1.get(s.charAt(i)))len++;
+            while(len==t.length()){
+                String str1=s.substring(l,i+1);
+                if(str1.length()<=str_len){
+                    str=str1;
+                    str_len=str1.length();
+                }
+                char a1=s.charAt(l);
+                map2.put(a1,map2.get(a1)-1);
+                if(map1.containsKey(a1) && map2.get(a1)<map1.get(a1))len--;
+                l++;
+                
 
-        return res;
+
+            }
+
+        }
+        return str;
     }
 }
